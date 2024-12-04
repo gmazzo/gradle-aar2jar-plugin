@@ -1,5 +1,3 @@
-import java.lang.Thread.sleep
-
 plugins {
     java
     alias(libs.plugins.kotlin.jvm)
