@@ -1,5 +1,3 @@
-import java.lang.Thread.sleep
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
@@ -26,7 +24,7 @@ gradlePlugin {
             displayName = name
             implementationClass = "io.github.gmazzo.gradle.aar2jar.AAR2JARPlugin"
             description = "Adds AAR dependency support for Java"
-            tags.addAll("android", "aar", "jar", "java", "aar2jar")
+            tags.addAll("android", "aar", "jar", "java", "aar2jar", "aar-jar")
         }
     }
 }
