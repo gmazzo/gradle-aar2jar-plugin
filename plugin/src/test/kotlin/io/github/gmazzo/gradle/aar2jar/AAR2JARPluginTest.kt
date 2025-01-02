@@ -1,5 +1,14 @@
 package io.github.gmazzo.gradle.aar2jar
 
+import org.gradle.api.Action
+import org.gradle.api.problems.ProblemSpec
+import org.gradle.api.problems.internal.AdditionalDataBuilderFactory
+import org.gradle.api.problems.internal.InternalProblemReporter
+import org.gradle.api.problems.internal.InternalProblemSpec
+import org.gradle.api.problems.internal.InternalProblems
+import org.gradle.api.problems.internal.Problem
+import org.gradle.api.problems.internal.ProblemsProgressEventEmitterHolder
+import org.gradle.internal.operations.OperationIdentifier
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.get
 import org.gradle.testfixtures.ProjectBuilder
@@ -19,6 +28,8 @@ class AAR2JARPluginTest {
     @ParameterizedTest(name = "{0}")
     @CsvSource("runtimeClasspath", "compileClasspath")
     fun `can resolve AAR dependencies`(configuration: String): Unit = with(ProjectBuilder.builder().build()) {
+        gradleIssue31862Workaround()
+
         apply(plugin = "java")
         apply(plugin = "io.github.gmazzo.aar2jar")
 
@@ -34,5 +45,42 @@ class AAR2JARPluginTest {
             resolvedArtifacts,
         )
     }
+
+    // TODO workaround for https://github.com/gradle/gradle/issues/31862
+    private fun gradleIssue31862Workaround() = ProblemsProgressEventEmitterHolder.init(object : InternalProblems {
+
+        override fun getInternalReporter() = object : InternalProblemReporter {
+
+            override fun create(action: Action<InternalProblemSpec?>): Problem {
+                TODO("Not yet implemented")
+            }
+
+            override fun report(problem: Problem) {
+            }
+
+            override fun report(problems: Collection<Problem?>) {
+            }
+
+            override fun report(problem: Problem, id: OperationIdentifier) {
+            }
+
+            override fun throwing(exception: Throwable, problems: Collection<Problem?>) =
+                error("Exception: $exception")
+
+            override fun reporting(spec: Action<ProblemSpec?>) {
+            }
+
+            override fun throwing(spec: Action<ProblemSpec?>) =
+                error("Exception: $spec")
+
+        }
+
+        override fun getAdditionalDataBuilderFactory(): AdditionalDataBuilderFactory {
+            TODO("Not yet implemented")
+        }
+
+        override fun getReporter() = getInternalReporter()
+
+    })
 
 }
