@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.importClasses)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
     alias(libs.plugins.gradle.pluginPublish)
@@ -29,8 +30,24 @@ gradlePlugin {
     }
 }
 
+importClasses {
+    repackageTo = "io.github.gmazzo.gradle.aar2jar.agp"
+    keep("com.android.build.gradle.internal.dependency.AarToClassTransform")
+    keep("com.android.build.gradle.internal.dependency.AarToClassTransform\$Params")
+    include("**/*.class")
+    option("-keepclassmembers enum com.android.resources.ResourceType { *; }")
+    option("-keepclassmembers,allowobfuscation enum * { *; }")
+}
+
 dependencies {
+    fun plugin(plugin: Provider<PluginDependency>) =
+        plugin.get().run { "$pluginId:$pluginId.gradle.plugin:$version" }
+
     compileOnly(gradleKotlinDsl())
+
+    importClasses(plugin(libs.plugins.android))
+    importClassesLibraries(plugin(libs.plugins.kotlin.jvm))
+    importClassesLibraries(gradleApi())
 
     testImplementation(gradleKotlinDsl())
     testImplementation(gradleTestKit())
