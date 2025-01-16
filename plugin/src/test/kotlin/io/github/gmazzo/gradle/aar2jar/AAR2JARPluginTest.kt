@@ -26,25 +26,26 @@ class AAR2JARPluginTest {
     }
 
     @ParameterizedTest(name = "{0}")
-    @CsvSource("runtimeClasspath", "compileClasspath")
-    fun `can resolve AAR dependencies`(configuration: String): Unit = with(ProjectBuilder.builder().build()) {
-        gradleIssue31862Workaround()
+    @CsvSource(
+        "compileClasspath, runtime-1.1.1-api.jar|common-1.1.1.jar|support-annotations-26.1.0.jar",
+        "runtimeClasspath, runtime-1.1.1-runtime.jar|common-1.1.1.jar|support-annotations-26.1.0.jar",
+    )
+    fun `can resolve AAR dependencies`(configuration: String, expectedArtifacts: String): Unit =
+        with(ProjectBuilder.builder().build()) {
+            gradleIssue31862Workaround()
 
-        apply(plugin = "java")
-        apply(plugin = "io.github.gmazzo.aar2jar")
+            apply(plugin = "java")
+            apply(plugin = "io.github.gmazzo.aar2jar")
 
-        repositories.mavenCentral()
-        repositories.google()
+            repositories.mavenCentral()
+            repositories.google()
 
-        dependencies.add("implementation", "android.arch.core:runtime:1.1.1")
+            dependencies.add("implementation", "android.arch.core:runtime:1.1.1")
 
-        val resolvedArtifacts = configurations[configuration].files.mapTo(mutableSetOf()) { it.name }
+            val resolvedArtifacts = configurations[configuration].files.mapTo(mutableSetOf()) { it.name }
 
-        assertEquals(
-            setOf("runtime-1.1.1.jar", "common-1.1.1.jar", "support-annotations-26.1.0.jar"),
-            resolvedArtifacts,
-        )
-    }
+            assertEquals(expectedArtifacts.split('|').toSet(), resolvedArtifacts)
+        }
 
     // TODO workaround for https://github.com/gradle/gradle/issues/31862
     private fun gradleIssue31862Workaround() = ProblemsProgressEventEmitterHolder.init(object : InternalProblems {
