@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.publicationsReport)
     base
     `maven-publish`
 }
