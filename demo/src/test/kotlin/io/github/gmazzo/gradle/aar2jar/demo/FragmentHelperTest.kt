@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class FragmentHelperTest {
 
     @Test
-    fun testCreateFragmentFactory()  {
+    fun testCreateFragmentFactory() {
         assertNotNull(FragmentHelper.createFragmentFactory())
     }
 
