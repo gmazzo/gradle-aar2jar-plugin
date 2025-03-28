@@ -3,8 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.samReceiver)
     alias(libs.plugins.dokka)
-    alias(libs.plugins.axion.release)
     alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.gitVersion)
     alias(libs.plugins.gradle.pluginPublish)
     alias(libs.plugins.publicationsReport)
     jacoco
@@ -12,7 +12,6 @@ plugins {
 
 group = "io.github.gmazzo.aar2jar"
 description = "Adds AAR dependency support for Java"
-version = scmVersion.version
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
 samWithReceiver.annotation(HasImplicitReceiver::class.qualifiedName!!)
