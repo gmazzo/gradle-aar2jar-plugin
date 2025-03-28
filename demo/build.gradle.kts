@@ -8,9 +8,7 @@ plugins {
 }
 
 group = "io.github.gmazzo.aar2jar.demo"
-version = providers
-    .exec { commandLine("git", "describe", "--tags", "--always") }
-    .standardOutput.asText.get().trim().removePrefix("v")
+version = "0.1.0"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
 
