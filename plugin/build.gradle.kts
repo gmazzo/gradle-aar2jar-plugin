@@ -90,11 +90,13 @@ dependencies {
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.params)
-    testRuntimeOnly(libs.junit.engine)
+}
+
+testing.suites.withType<JvmTestSuite> {
+    useJUnitJupiter()
 }
 
 tasks.test {
-    useJUnitPlatform()
     finalizedBy(tasks.jacocoTestReport)
 }
 

@@ -8,7 +8,6 @@ demo-androidx-browser = { module = "androidx.browser:browser", version = "1.8.0"
 demo-androidx-camera = { module = "androidx.camera:camera-view", version = "1.4.0" }
 demo-androidx-fragment = { module = "androidx.fragment:fragment", version = "1.8.5" }
 junit-bom = { module = "org.junit:junit-bom", version = "5.12.1" }
-junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
 junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
 
 [plugins]
