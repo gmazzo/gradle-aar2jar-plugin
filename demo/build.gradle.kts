@@ -22,15 +22,14 @@ dependencies {
 
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.params)
-    testRuntimeOnly(libs.junit.engine)
 }
 
 publishing.publications.register<MavenPublication>("maven") {
     from(components["java"])
 }
 
-tasks.test {
-    useJUnitPlatform()
+testing.suites.withType<JvmTestSuite> {
+    useJUnitJupiter()
 }
 
 tasks.jacocoTestReport {
