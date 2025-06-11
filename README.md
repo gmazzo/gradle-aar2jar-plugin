@@ -5,6 +5,8 @@
 [![Coverage](https://codecov.io/gh/gmazzo/gradle-aar2jar-plugin/branch/main/graph/badge.svg?token=D5cDiPWvcS)](https://codecov.io/gh/gmazzo/gradle-aar2jar-plugin)
 [![Users](https://img.shields.io/badge/users_by-Sourcegraph-purple)](https://sourcegraph.com/search?q=content:io.github.gmazzo.aar2jar+-repo:github.com/gmazzo/gradle-aar2jar-plugin)
 
+[![Contributors](https://contrib.rocks/image?repo=gmazzo/gradle-aar2jar-plugin)](https://github.com/gmazzo/gradle-aar2jar-plugin/graphs/contributors)
+
 # gradle-aar2jar-plugin
 
 A Gradle plugin to allow consuming Android's AAR dependencies as JAR dependencies for JVM projects.
