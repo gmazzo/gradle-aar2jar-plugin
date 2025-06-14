@@ -6,7 +6,7 @@ kotlin = "2.1.21"
 demo-android = { module = "com.google.android:android", version = "4.1.1.4" }
 demo-androidx-browser = { module = "androidx.browser:browser", version = "1.8.0" }
 demo-androidx-camera = { module = "androidx.camera:camera-view", version = "1.4.2" }
-demo-androidx-fragment = { module = "androidx.fragment:fragment", version = "1.8.7" }
+demo-androidx-fragment = { module = "androidx.fragment:fragment", version = "1.8.8" }
 junit-bom = { module = "org.junit:junit-bom", version = "5.13.1" }
 junit-params = { module = "org.junit.jupiter:junit-jupiter-params" }
 
