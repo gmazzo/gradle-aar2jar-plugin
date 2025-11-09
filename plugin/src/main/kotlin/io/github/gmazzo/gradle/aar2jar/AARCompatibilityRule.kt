@@ -9,11 +9,11 @@ import org.gradle.api.attributes.LibraryElements.CLASSES_AND_RESOURCES
 import org.gradle.api.attributes.LibraryElements.JAR
 import org.gradle.api.attributes.LibraryElements.RESOURCES
 
-class AARCompatibilityRule : AttributeCompatibilityRule<LibraryElements> {
+public class AARCompatibilityRule : AttributeCompatibilityRule<LibraryElements> {
 
     private val compatibles = setOf(JAR, CLASSES, RESOURCES, CLASSES_AND_RESOURCES)
 
-    override fun execute(details: CompatibilityCheckDetails<LibraryElements>) = with(details) {
+    override fun execute(details: CompatibilityCheckDetails<LibraryElements>): Unit = with(details) {
         if (consumerValue?.name in compatibles && producerValue?.name == AAR_TYPE) {
             compatible()
         }
