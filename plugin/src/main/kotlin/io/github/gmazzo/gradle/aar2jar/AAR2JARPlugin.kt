@@ -22,10 +22,10 @@ import org.gradle.kotlin.dsl.the
 /**
  * Allows consuming Android's AAR artifacts as JARs
  */
-class AAR2JARPlugin : Plugin<Project> {
+public class AAR2JARPlugin : Plugin<Project> {
 
-    companion object {
-        const val AAR_TYPE = "aar"
+    public companion object {
+        public const val AAR_TYPE: String = "aar"
     }
 
     override fun apply(target: Project): Unit = with(target) {
