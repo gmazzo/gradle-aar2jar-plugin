@@ -1,6 +1,6 @@
 [versions]
 java = "17"
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 
 [libraries]
 demo-android = { module = "com.google.android:android", version = "4.1.1.4" }
