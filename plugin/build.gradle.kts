@@ -21,7 +21,14 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(libs.versions.java.get()
 samWithReceiver.annotation(HasImplicitReceiver::class.qualifiedName!!)
 
 kotlin {
-    abiValidation.enabled = true
+    abiValidation {
+        enabled = true
+        filters.excluded.byNames.addAll(
+            "io.github.gmazzo.gradle.aar2jar.agp.**",
+            "kotlin.**",
+            "org.**"
+        )
+    }
     explicitApi()
 }
 
