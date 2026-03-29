@@ -23,7 +23,7 @@ samWithReceiver.annotation(HasImplicitReceiver::class.qualifiedName!!)
 kotlin {
     abiValidation {
         enabled = true
-        filters.excluded.byNames.addAll(
+        filters.exclude.byNames.addAll(
             "io.github.gmazzo.gradle.aar2jar.agp.**",
             "kotlin.**",
             "org.**"
