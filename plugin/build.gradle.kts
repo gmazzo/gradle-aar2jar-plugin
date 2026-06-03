@@ -22,7 +22,6 @@ samWithReceiver.annotation(HasImplicitReceiver::class.qualifiedName!!)
 
 kotlin {
     abiValidation {
-        enabled = true
         filters.exclude.byNames.addAll(
             "io.github.gmazzo.gradle.aar2jar.agp.**",
             "kotlin.**",
@@ -132,10 +131,6 @@ tasks.withType<PublishToMavenRepository>().configureEach {
 
 tasks.validatePlugins {
     enableStricterValidation = true
-}
-
-tasks.check {
-    dependsOn(tasks.checkLegacyAbi)
 }
 
 tasks.publishPlugins {
