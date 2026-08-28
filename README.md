@@ -32,3 +32,27 @@ repositories {
 ```
 
 Then, whenever you consume classes from the AAR as it if it was a JAR.
+
+## Consuming a local `com.android.library` module
+This plugin will enable to transform `aar`s into `jar`s,
+but Android Libraries still publish multiple variants (at least `debug` and `release`) and
+the `java` plugin does not support it.
+
+You'll must tell Gradle will variant you want to consume, by specifying the
+`import com.android.build.gradle.internal.attributes.VariantAttr` attribute. For instance:
+
+```kotlin
+dependencies {
+  implementation(project(":my-android-library")) {
+    attributes {
+      attribute(VariantAttr.ATTRIBUTE, objects.named("release"))
+    }
+  }
+}
+```
+will consume the `release` variant of the `my-android-library` module.
+
+> [!NOTE]
+> This should be the workaround if you are getting this error after appling the plugin
+> 
+> <pre>The consumer was configured to find a library for use during compile-time, compatible with Java 21,<br/>preferably in the form of class files, preferably optimized for standard JVMs, <br/>and its dependencies declared externally, as well as attribute 'artifactType' with value 'jar'. <br/>However we cannot choose between the following variants of project ':lib':<br/>          - debugApiElements<br/>          - releaseApiElements</pre>
