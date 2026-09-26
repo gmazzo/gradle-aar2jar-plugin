@@ -1,5 +1,6 @@
 @file:OptIn(ExperimentalAbiValidation::class)
 
+import org.gradle.plugin.compatibility.compatibility
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -10,6 +11,7 @@ plugins {
     alias(libs.plugins.mavenPublish)
     alias(libs.plugins.gitVersion)
     alias(libs.plugins.gradle.pluginPublish)
+    alias(libs.plugins.gradle.pluginCompatibility)
     alias(libs.plugins.publicationsReport)
     jacoco
 }
@@ -45,6 +47,12 @@ gradlePlugin {
             displayName = name
             implementationClass = "io.github.gmazzo.gradle.aar2jar.AAR2JARPlugin"
             description = project.description
+            compatibility {
+                features {
+                    configurationCache = true
+                    isolatedProjects = true
+                }
+            }
             tags.addAll("android", "aar", "jar", "java", "aar2jar", "aar-jar")
         }
     }
